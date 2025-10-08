@@ -3,14 +3,14 @@ import pandas as pd
 # ------------------------------
 # Step 0: CSV file path
 # ------------------------------
-csv_file = "xx_iris_partner_sept_25.csv"
+csv_file = "market_visit_gt.csv"
 
 # ------------------------------
 # Step 1: Chunk settings
 # ------------------------------
-chunksize = 500000  # adjust based on your RAM
+chunksize = 10000  # adjust based on your RAM
 cols_needed = [
-    'tsa_call_uid', 'retailer_id', 'retailer_name', 
+    'tsa_call_uid', 'retailer_code','retailer_name', 
     'channel', 'sub_channel', 'territory', 'route', 'section', 'call_type',
     'call_start_time', 'call_end_time', 'retailer_status',
     'geo_verified', 'internet_connection_validity', 
@@ -40,7 +40,7 @@ df = df.sort_values(by=['tsa_call_uid', 'question_id'])
 # Step 4: Pivot survey responses
 # ------------------------------
 index_cols = [
-    'tsa_call_uid', 'retailer_id', 'retailer_name', 
+    'tsa_call_uid', 'retailer_code','retailer_name', 
     'channel', 'sub_channel', 'territory', 'route', 'section', 'call_type',
     'call_start_time', 'call_end_time', 'retailer_status',
     'geo_verified', 'internet_connection_validity', 
@@ -91,5 +91,5 @@ print(survey_df.head())
 # ------------------------------
 # Step 7: Save to Excel
 # ------------------------------
-survey_df.to_excel("survey_responses_formatted.xlsx", index=False)
+survey_df.to_excel("market_visit_gt_sept_25_formatted.xlsx", index=False)
 print("Formatted survey responses saved to 'survey_responses_formatted.xlsx'")

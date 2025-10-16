@@ -4,7 +4,8 @@ import ast
 # ------------------------------
 # Step 1: CSV file path
 # ------------------------------
-csv_file = "retailer_questionaries_responses_till_8_Oct.csv"
+csv_file = "./Dumps/retailer_questionaries_survey_oct.csv"
+output_file_name="report_retailer_questionaries_survey_oct_till_15_Oct.xlsx"
 
 # ------------------------------
 # Step 2: Columns to use
@@ -96,7 +97,7 @@ pivot_df = pivot_df.sort_values('submit_time_dt').drop(columns=['submit_time_dt'
 # ------------------------------
 # Step 8: Export to Excel
 # ------------------------------
-output_file = "Retailer_Questionaries_Responses_Till_8_Oct_Formatted.xlsx"
-pivot_df.to_excel(output_file, index=False)
 
-print(f"✅ Formatted survey responses saved to '{output_file}'")
+pivot_df.to_excel(output_file_name, index=False)
+
+print(f"✅ Formatted survey responses saved to '{output_file_name}'")

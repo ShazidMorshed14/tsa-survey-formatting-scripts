@@ -3,7 +3,8 @@ import pandas as pd
 # ------------------------------
 # Step 0: CSV file path
 # ------------------------------
-csv_file = "market_visit_gt.csv"
+csv_file = "./Dumps/mv_gt_oct.csv"
+output_file_name="report_market_visit_gt_till_15_Oct.xlsx"
 
 # ------------------------------
 # Step 1: Chunk settings
@@ -91,5 +92,5 @@ print(survey_df.head())
 # ------------------------------
 # Step 7: Save to Excel
 # ------------------------------
-survey_df.to_excel("market_visit_gt_sept_25_formatted.xlsx", index=False)
+survey_df.to_excel(output_file_name, index=False)
 print("Formatted survey responses saved to 'survey_responses_formatted.xlsx'")

@@ -3,8 +3,8 @@ import pandas as pd
 # ------------------------------
 # Step 0: CSV file path
 # ------------------------------
-csv_file = "./Dumps/mv_gt_oct.csv"
-output_file_name="report_market_visit_gt_till_15_Oct.xlsx"
+csv_file = "./Dumps/report_market_visit_partner_16Oct_21Oct.csv"
+output_file_name="report_market_visit_partner_16_21Oct.xlsx"
 
 # ------------------------------
 # Step 1: Chunk settings

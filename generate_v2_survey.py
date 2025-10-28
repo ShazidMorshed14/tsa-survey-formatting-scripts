@@ -4,16 +4,16 @@ import ast
 # ------------------------------
 # Step 1: CSV file path
 # ------------------------------
-csv_file = "./Dumps/report_normal_survey_16-21Oct.csv"
-output_file_name="report_retailer_questionaries_survey_16_Oct_21_Oct.xlsx"
+csv_file = "./Dumps/sr_survey_21_Oct.csv"
+output_file_name="Report_SR_SURVEY_DUMP_21_Oct.xlsx"
 
 # ------------------------------
 # Step 2: Columns to use
 # ------------------------------
 cols_needed = [
-    'retailer_code','partner_code','retailer_name','channel','sub_channel',
-    'territory','route','section','retailer_status','latitude','longitude',
-    'submit_time','tsa_name','tsa_code','question_id','question','response'
+    'region_name','areas_name','dh_name','tr_name','point_name',
+    'routes','sections','retailer_code','latitude','longitude',
+    'question','question_id','response','created_at'
 ]
 
 # ------------------------------
@@ -33,9 +33,8 @@ print(f"✅ Total rows loaded: {len(df)}")
 # Step 4: Pivot the data
 # ------------------------------
 index_cols = [
-    'retailer_code','partner_code','retailer_name','channel','sub_channel',
-    'territory','route','section','retailer_status','latitude','longitude',
-    'submit_time','tsa_name','tsa_code'
+   'region_name','areas_name','dh_name','tr_name','point_name',
+   'routes','sections','retailer_code','latitude','longitude','created_at'
 ]
 
 # Function to join multiple responses with comma
@@ -71,9 +70,9 @@ pivot_df.columns = [str(c) for c in pivot_df.columns]
 # ------------------------------
 # Step 5: Format submit_time
 # ------------------------------
-pivot_df['submit_time'] = pd.to_datetime(
-    pivot_df['submit_time'], errors='coerce'
-).dt.strftime('%Y-%m-%d %I:%M:%S %p')
+# pivot_df['created_at'] = pd.to_datetime(
+#     pivot_df['created_at'], errors='coerce'
+# ).dt.strftime('%Y-%m-%d %I:%M:%S %p')
 
 # ------------------------------
 # Step 6: Sort question columns by question_id
@@ -91,8 +90,8 @@ pivot_df = pivot_df[fixed_cols + question_cols_sorted]
 # ------------------------------
 # Step 7: Sort rows by submit_time ascending
 # ------------------------------
-pivot_df['submit_time_dt'] = pd.to_datetime(pivot_df['submit_time'], format='%Y-%m-%d %I:%M:%S %p', errors='coerce')
-pivot_df = pivot_df.sort_values('submit_time_dt').drop(columns=['submit_time_dt'])
+# pivot_df['created_at_dt'] = pd.to_datetime(pivot_df['created_at'], format='%Y-%m-%d %I:%M:%S %p', errors='coerce')
+pivot_df = pivot_df.sort_values('created_at')
 
 # ------------------------------
 # Step 8: Export to Excel

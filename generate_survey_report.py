@@ -1,10 +1,11 @@
 import pandas as pd
+import os
 
 # ------------------------------
 # Step 0: CSV file path
 # ------------------------------
-csv_file = "./Dumps/report_market_visit_partner_16Oct_21Oct.csv"
-output_file_name="report_market_visit_partner_16_21Oct.xlsx"
+csv_file = "./Dumps/market_visit_c&c_28_30_Oct.csv"
+output_file_name="final_report_mv_c&c_28_30_Oct.xlsx"
 
 # ------------------------------
 # Step 1: Chunk settings
@@ -92,5 +93,10 @@ print(survey_df.head())
 # ------------------------------
 # Step 7: Save to Excel
 # ------------------------------
-survey_df.to_excel(output_file_name, index=False)
-print("Formatted survey responses saved to 'survey_responses_formatted.xlsx'")
+reports_folder = "Reports"
+os.makedirs(reports_folder, exist_ok=True)  # ensure folder exists
+
+output_path = os.path.join(reports_folder, output_file_name)
+survey_df.to_excel(output_path, index=False)
+
+print("Formatted survey responses saved to 'Reports/" + output_file_name + ".xlsx'")

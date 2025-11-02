@@ -1,11 +1,12 @@
 import pandas as pd
 import ast
+import os
 
 # ------------------------------
 # Step 1: CSV file path
 # ------------------------------
-csv_file = "./Dumps/report_normal_survey_16-21Oct.csv"
-output_file_name="report_retailer_questionaries_survey_16_Oct_21_Oct.xlsx"
+csv_file = "./Dumps/retailer_question_survey_28_30_Oct.csv"
+output_file_name="final_retailer_question_survey_28_30_Oct.xlsx"
 
 # ------------------------------
 # Step 2: Columns to use
@@ -97,6 +98,9 @@ pivot_df = pivot_df.sort_values('submit_time_dt').drop(columns=['submit_time_dt'
 # ------------------------------
 # Step 8: Export to Excel
 # ------------------------------
+reports_folder = "Reports"
+os.makedirs(reports_folder, exist_ok=True)  # ensure folder exists
+output_path = os.path.join(reports_folder, output_file_name)
 
 pivot_df.to_excel(output_file_name, index=False)
 
